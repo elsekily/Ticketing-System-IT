@@ -47,6 +47,9 @@ public class TicketingSystemDbContext : IdentityDbContext<User, Role, int, Ident
         builder.Entity<Ticket>()
             .HasOne(t => t.AssignedEmployee)
             .WithMany(u => u.TicketsSolved)
-            .HasForeignKey(t => t.AssignedEmployeeID);
+            .HasForeignKey(t => t.AssignedEmployeeID)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.SetNull);
+        ;
     }
 }

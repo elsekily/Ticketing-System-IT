@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketingSystemIT.Persistence;
 
@@ -10,9 +11,11 @@ using TicketingSystemIT.Persistence;
 namespace TicketingSystemIT.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    partial class TicketingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230321185542_InitialModel")]
+    partial class InitialModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
@@ -151,7 +154,7 @@ namespace TicketingSystemIT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AssignedEmployeeID")
+                    b.Property<int>("AssignedEmployeeID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CategoryId")
@@ -160,13 +163,13 @@ namespace TicketingSystemIT.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("TimeAssigned")
+                    b.Property<DateTime>("TimeAssigned")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TimeIssued")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("TimeSolved")
+                    b.Property<DateTime>("TimeSolved")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserIssuedId")
@@ -304,7 +307,8 @@ namespace TicketingSystemIT.Migrations
                     b.HasOne("TicketingSystemIT.Entities.Models.User", "AssignedEmployee")
                         .WithMany("TicketsSolved")
                         .HasForeignKey("AssignedEmployeeID")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TicketingSystemIT.Entities.Models.Category", "Category")
                         .WithMany("Tickets")

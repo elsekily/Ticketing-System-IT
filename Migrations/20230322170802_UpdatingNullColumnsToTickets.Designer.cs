@@ -11,8 +11,8 @@ using TicketingSystemIT.Persistence;
 namespace TicketingSystemIT.Migrations
 {
     [DbContext(typeof(TicketingSystemDbContext))]
-    [Migration("20230320232225_InitialModel")]
-    partial class InitialModel
+    [Migration("20230322170802_UpdatingNullColumnsToTickets")]
+    partial class UpdatingNullColumnsToTickets
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -110,10 +110,10 @@ namespace TicketingSystemIT.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
+                    b.Property<TimeSpan>("EstimatedTimeInMinutes")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeSpan>("EstimatedTimeInMinutes")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -163,13 +163,13 @@ namespace TicketingSystemIT.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("TimeAssigned")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("TimeIssued")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("TimeReceived")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("TimeSolved")
+                    b.Property<DateTime?>("TimeSolved")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserIssuedId")

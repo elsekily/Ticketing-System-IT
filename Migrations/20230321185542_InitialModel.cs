@@ -58,7 +58,7 @@ namespace TicketingSystemIT.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: true),
                     EstimatedTimeInMinutes = table.Column<TimeSpan>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -180,7 +180,7 @@ namespace TicketingSystemIT.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
                     TimeIssued = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    TimeReceived = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TimeAssigned = table.Column<DateTime>(type: "TEXT", nullable: false),
                     TimeSolved = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UserIssuedId = table.Column<int>(type: "INTEGER", nullable: false),
                     AssignedEmployeeID = table.Column<int>(type: "INTEGER", nullable: false),
