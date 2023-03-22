@@ -9,6 +9,10 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { TicketFormComponent } from './ticket-form/ticket-form.component';
+import { CategoryService } from './services/category.service';
+import { CommonModule } from '@angular/common';
+import { TicketService } from './services/TicketService';
 
 @NgModule({
   declarations: [
@@ -16,19 +20,25 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    TicketFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    CommonModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'tickect/new', component: TicketFormComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ])
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    TicketService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
